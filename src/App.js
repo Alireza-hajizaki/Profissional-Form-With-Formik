@@ -1,9 +1,10 @@
 import './App.css';
+import FormikForm from './components/FormikForm';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hi</h1>
+    <div className="app">
+      <FormikForm/>
     </div>
   );
 }
