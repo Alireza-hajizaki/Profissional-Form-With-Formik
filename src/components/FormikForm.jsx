@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage , FieldArray , FastField } from "formik";
 import TextError from "./TextError";
 
 const initialValues = {
@@ -12,7 +12,8 @@ const initialValues = {
     facebook: "",
     twitter: "",
   },
-  phoneNumber: ["", ""],
+  phoneNumbers: ["", ""],
+  phNumbers: [''],
 };
 
 const onSubmit = (values) => {
@@ -40,6 +41,7 @@ const FormikForm = () => {
             <Field type="text" id="naem" name="name" />
             <ErrorMessage name="name" component={TextError} />
           </div>
+
           <div className="form-control">
             <label htmlFor="channel">E-mail</label>
             <Field type="email" id="email" name="email" />
@@ -47,6 +49,7 @@ const FormikForm = () => {
               {(errorMsg) => <div className="error">{errorMsg}</div>}
             </ErrorMessage>
           </div>
+
           <div className="form-control">
             <label htmlFor="channel">Channel</label>
             <Field
@@ -59,14 +62,16 @@ const FormikForm = () => {
               {(errorMsg) => <div className="error">{errorMsg}</div>}
             </ErrorMessage>
           </div>
+
           <div className="form-control">
             <label htmlFor="name">Comments</label>
             <Field as="textarea" id="comments" name="comments" />
           </div>
+
           <div className="form-control">
             <label htmlFor="address">Address</label>
             {/* field Revisited */}
-            <Field id="address" name="address">
+            <FastField id="address" name="address">
               {(props) => {
                 const { field, form, meta } = props;
                 return (
@@ -78,8 +83,9 @@ const FormikForm = () => {
                   </div>
                 );
               }}
-            </Field>
+            </FastField>
           </div>
+
           <div className="form-control">
             <label>FaceBook profile</label>
             <Field type="text" id="facebook" name="social.facebook" />
@@ -90,11 +96,33 @@ const FormikForm = () => {
           </div>
           <div className="form-control">
             <label>Primary Phone number</label>
-            <Field type="text" id="primaryPh" name="phoneNumber[0]" />
+            <Field type="text" id="primaryPh" name="phoneNumbers[0]" />
           </div>
           <div className="form-control">
             <label>Secondary Phone number</label>
-            <Field type="text" id="secondaryPh" name="phoneNumber[1]" />
+            <Field type="text" id="secondaryPh" name="phoneNumbers[1]" />
+          </div>
+          <div className="form-control">
+            <FieldArray name="phNumbers">
+              {fieldArrayProps => {
+                const {push,remove,form} = fieldArrayProps;
+                const {values} = form;
+                const {phNumbers} = values;
+                return(
+                  <div>
+                    {phNumbers.map((phNumber,index) => (
+                    <div key={index}>
+                      <Field name={`phNumbers[${index}]`}/>
+                      {index > 0 && 
+                      <button type="button" onClick={() => remove(index)}>-</button>
+                      }
+                      <button type="button" onClick={() =>push('')}>+</button>
+                    </div>
+                    ))}
+                  </div>
+                )
+              }}
+            </FieldArray>
           </div>
 
           <button type="submit">Submit</button>
