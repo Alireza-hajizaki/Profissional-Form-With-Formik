@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as Yup from "yup";
 import {
   Formik,
@@ -23,10 +24,25 @@ const initialValues = {
   phNumbers: [""],
 };
 
+const savedValues = {
+  name: "vishwas",
+  email: "sh@yahoo.com",
+  channel: "mrbeast",
+  comments: "welcome to formik",
+  address: "esf,kh",
+  social: {
+    facebook: "",
+    twitter: "",
+  },
+  phoneNumbers: ["", ""],
+  phNumbers: [""],
+};
+
 const onSubmit = (values , onSubmitProps) => {
   console.log("Form Data :", values);
   console.log('Submit Props', onSubmitProps)
   onSubmitProps.setSubmitting(false);
+  onSubmitProps.resetForm()
 };
 
 const validationSchema = Yup.object({
@@ -44,11 +60,13 @@ const validateComments = (value) => {
 };
 
 const FormikForm = () => {
+  const [formValues, setFormValues] = useState(null);
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues|| initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      enableReinitialize
       // validateOnMount
     >
       {(formik) => {
@@ -159,7 +177,7 @@ const FormikForm = () => {
                 </FieldArray>
               </div>
 
-              <button type="button" onClick={() => formik.validateField('comments')} >Validate Comments</button>
+              {/* <button type="button" onClick={() => formik.validateField('comments')} >Validate Comments</button>
               <button type="button" onClick={() => formik.validateForm()} >Validate All</button>
               <button type="button" onClick={() => formik.setFieldTouched('comments')} >Visit Comments</button>
               <button type="button" onClick={() => formik.setTouched({
@@ -167,9 +185,13 @@ const FormikForm = () => {
                 email: true,
                 channel: true,
                 comments: true,
-              })} >Visit All</button>
+              })} >Visit All</button> */}
+              <button type="button" onClick={() => setFormValues(savedValues)} >Load Save Data</button>
               <button type="submit" disabled={!formik.isValid || formik.onSubmitProps}>Submit</button>
               {/* <button type="submit" disabled={!(formik.dirty && formik.isValid)}>Submit</button> */}
+
+              {/* second way reset form */}
+              {/* <button type="reset">Reset</button>  */}
             </Form>
           </section>
         );
