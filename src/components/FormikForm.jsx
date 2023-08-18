@@ -23,8 +23,10 @@ const initialValues = {
   phNumbers: [""],
 };
 
-const onSubmit = (values) => {
+const onSubmit = (values , onSubmitProps) => {
   console.log("Form Data :", values);
+  console.log('Submit Props', onSubmitProps)
+  onSubmitProps.setSubmitting(false);
 };
 
 const validationSchema = Yup.object({
@@ -47,6 +49,7 @@ const FormikForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      // validateOnMount
     >
       {(formik) => {
         console.log('Formik Props', formik)
@@ -97,7 +100,7 @@ const FormikForm = () => {
                 {/* field Revisited */}
                 <FastField id="address" name="address">
                   {(props) => {
-                    const { field, form, meta } = props;
+                    const { field, meta } = props; //+form
                     return (
                       <div>
                         <input type="text" id="address" {...field} />
@@ -165,7 +168,8 @@ const FormikForm = () => {
                 channel: true,
                 comments: true,
               })} >Visit All</button>
-              <button type="submit">Submit</button>
+              <button type="submit" disabled={!formik.isValid || formik.onSubmitProps}>Submit</button>
+              {/* <button type="submit" disabled={!(formik.dirty && formik.isValid)}>Submit</button> */}
             </Form>
           </section>
         );
