@@ -25,6 +25,7 @@ textarea , select{
   padding-bottom: 1rem;
   border-radius: 5px;
 }
+
 .error {
   color: red;
 }
@@ -39,7 +40,7 @@ textarea , select{
 }
 .form-control {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   width: 300px;
 }
