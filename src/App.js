@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="app">
       {/* <FormikContainer/> */}
-      <LoginForm/>
-      {/* <RegistrationForm/> */}
+      {/* <LoginForm/> */}
+      <RegistrationForm/>
     </div>
   );
 }
