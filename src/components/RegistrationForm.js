@@ -60,13 +60,12 @@ function RegistrationForm() {
               type="password"
               label="Confirm Password"
             />
-            {/* <FormikControl
-              control="radio"
-              name="modeOfContact"
-              label="Mode Of Contact"
-              options={options}
-            /> */}
-            <FormikControl control='radio' label='Radio Topic' name='modeOfContact' options={options} /> 
+            <FormikControl 
+            control='radio' 
+            label='Radio Topic' 
+            name='modeOfContact' 
+            options={options} 
+            /> 
             <FormikControl
               control="input"
               name="phone"
