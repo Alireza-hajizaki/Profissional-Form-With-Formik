@@ -6,8 +6,12 @@
   background-image: url("/public//images/background1.jpg");
   background-position: center;
   background-size: cover;
-  height: 80vh;
+  height: 100vh;
   padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 section {
   display: flex;
@@ -40,18 +44,30 @@ textarea , select{
 }
 .form-control {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
   width: 300px;
-}
-.form-control input {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: none;
-  outline: none;
 }
 .form-control label {
   color: #fff;
+  align-self: self-start;
+}
+.form-control input{
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.checkbox-container{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.radio-container{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 button {
   cursor: pointer;
@@ -71,9 +87,14 @@ button:hover {
   width: 92%;
 }
 .form-container {
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+  width: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 0.7rem;
+  gap: 1rem;
+  border-radius: 20px;
 }

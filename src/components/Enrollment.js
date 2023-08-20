@@ -43,18 +43,14 @@ function EnrollmentForm() {
     >
       {(formik) => {
         return (
-          <Form>
+          <Form className="form-container">
             <FormikControl
               control="input"
               type="email"
               label="E-mail"
               name="email"
             />
-            <FormikControl
-              control="textarea"
-              label="Bio"
-              name="bio"
-            />
+            <FormikControl control="textarea" label="Bio" name="bio" />
             <FormikControl
               control="select"
               label="Course"
@@ -72,7 +68,9 @@ function EnrollmentForm() {
               label="Course Date"
               name="courseDate"
             />
-            <button type="submit" disabled={!formik.isValid}>Submit</button>
+            <button type="submit" disabled={!formik.isValid}>
+              Submit
+            </button>
           </Form>
         );
       }}
