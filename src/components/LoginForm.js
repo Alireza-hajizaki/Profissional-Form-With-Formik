@@ -23,7 +23,7 @@ function LoginForm() {
         {
             formik => {
                 return (
-                    <Form>
+                    <Form className="form-container">
                         <FormikControl
                         control='input'
                         name='email'

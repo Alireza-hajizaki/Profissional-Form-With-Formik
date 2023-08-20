@@ -37,7 +37,7 @@ function FormikContainer() {
     selectOption: Yup.string().required("Required"),
     radioOption: Yup.string().required("Required"),
     checkboxOption: Yup.array().required("Required"),
-    birthDate: Yup.string().required('Required').nullable()
+    birthDate: Yup.string().required('Required')
   });
   const onSubmit = (values) => console.log("Form_Data :", values);
   return (
